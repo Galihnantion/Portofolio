@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Muhamad Galih Saputra</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#4F46E5', // Indigo 600
+                        secondary: '#0EA5E9', // Sky 500
+                        accent: '#F43F5E', // Rose 500
+                        dark: '#0F172A', // Slate 900
+                        darker: '#020617', // Slate 950
+                        surface: '#1E293B', // Slate 800
+                        light: '#F8FAFC', // Slate 50
+                    },
+                    animation: {
+                        blob: "blob 7s infinite",
+                        float: "float 6s ease-in-out infinite",
+                    },
+                    keyframes: {
+                        blob: {
+                            "0%": { transform: "translate(0px, 0px) scale(1)" },
+                            "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+                            "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+                            "100%": { transform: "translate(0px, 0px) scale(1)" }
+                        },
+                        float: {
+                            "0%, 100%": { transform: "translateY(0)" },
+                            "50%": { transform: "translateY(-15px)" }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .neon-primary { text-shadow: 0 0 5px #fff, 0 0 10px #4F46E5, 0 0 20px #4F46E5; }
+        .neon-secondary { text-shadow: 0 0 5px #fff, 0 0 10px #0EA5E9, 0 0 20px #0EA5E9; }
+        .neon-accent { text-shadow: 0 0 5px #fff, 0 0 10px #F43F5E, 0 0 20px #F43F5E; }
+        .dynamic-glow-card { position: relative; transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); transform-style: preserve-3d; }
+        .dynamic-glow-card::after { content: ""; position: absolute; inset: -1px; background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(79, 70, 229, 0.4), transparent 40%); z-index: -1; border-radius: inherit; opacity: 0; transition: opacity 0.5s; }
+        .dynamic-glow-card:hover::after { opacity: 1; }
+    </style>
+</head>
+<body class="bg-light text-slate-700 dark:bg-darker dark:text-slate-300 transition-colors duration-300 font-sans antialiased overflow-x-hidden selection:bg-primary selection:text-white">
+
+    <!-- 1. Navbar Section -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent py-5">
+        <div class="container mx-auto px-6 md:px-12 flex justify-between items-center">
+            <a href="#home" class="font-heading text-2xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-1">
+                <span class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center text-lg shadow-lg">G</span>
+                <span>Galih<span class="text-primary">Sptr</span></span>
+            </a>
+            <div class="hidden lg:flex space-x-8 items-center font-medium text-sm">
+                <a href="#home">Beranda</a>
+                <a href="#about">Tentang</a>
+                <a href="#education">Pendidikan</a>
+                <a href="#skills">Keahlian</a>
+                <a href="#projects">Proyek</a>
+                <a href="#contact" class="px-5 py-2.5 rounded-full bg-slate-900 text-white dark:bg-white dark:text-slate-900">Hubungi Saya</a>
+                <button id="dark-mode-btn" class="text-xl"><i class="fas fa-moon"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 2. Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
+        <div class="container mx-auto px-6 md:px-12 z-10">
+            <div class="flex flex-col-reverse md:flex-row items-center justify-between gap-12">
+                <div class="md:w-1/2 text-center md:text-left" data-aos="fade-up">
+                    <h1 class="font-heading text-5xl md:text-7xl font-bold mb-6 text-slate-900 dark:text-white">
+                        Hai, Saya<br/><span class="text-primary">Muhamad Galih Saputra</span>
+                    </h1>
+                    <p class="text-lg text-slate-600 dark:text-slate-400 mb-8">Fullstack Web Developer berdedikasi menciptakan solusi digital inovatif.</p>
+                    <div class="flex gap-4 justify-center md:justify-start">
+                        <a href="#projects" class="px-8 py-3.5 rounded-full bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-bold shadow-xl">Lihat Portfolio</a>
+                        <a href="#contact" class="px-8 py-3.5 rounded-full border border-slate-200 dark:border-slate-800 font-bold">Hubungi Saya</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center" data-aos="fade-left">
+                    <div class="relative w-72 h-72 md:w-96 md:h-96">
+                        <div class="absolute inset-4 rounded-full overflow-hidden border-4 border-white dark:border-dark shadow-2xl bg-primary/10">
+                            <img src="images/profile-galih.png" alt="Profile" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Projects Section -->
+    <section id="projects" class="py-24 bg-slate-50 dark:bg-darker">
+        <div class="container mx-auto px-6 md:px-12">
+            <h2 class="text-center font-heading text-4xl font-bold mb-16 text-slate-900 dark:text-white">Proyek Pilihan</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-white dark:bg-surface rounded-3xl overflow-hidden shadow-lg group dynamic-glow-card" data-aos="fade-up">
+                    <div class="relative h-60 overflow-hidden">
+                        <img src="images/pengaduan-dashboard.png" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
+                            <button onclick="openDemoModal('pengaduan')" class="px-6 py-2 bg-primary text-white rounded-xl font-bold">Demo</button>
+                            <a href="https://github.com/Galihnantion/MuhamadGalihSaputraUKKN.git" target="_blank" class="px-6 py-2 bg-white text-dark rounded-xl font-bold">Code</a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Website Pengaduan Sekolah</h3>
+                        <p class="text-sm text-slate-500">Sistem manajemen aspirasi dan pengaduan siswa terpadu.</p>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="bg-white dark:bg-surface rounded-3xl overflow-hidden shadow-lg group dynamic-glow-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative h-60 overflow-hidden">
+                        <img src="images/kasir-pos.png" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
+                            <button onclick="openDemoModal('kasir')" class="px-6 py-2 bg-primary text-white rounded-xl font-bold">Demo</button>
+                            <a href="https://github.com/Galihnantion" target="_blank" class="px-6 py-2 bg-white text-dark rounded-xl font-bold">Code</a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Website Kasir (POS)</h3>
+                        <p class="text-sm text-slate-500">Aplikasi manajemen penjualan retail modern.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Demo Modal -->
+    <div id="demo-modal" class="fixed inset-0 z-[100] hidden overflow-y-auto">
+        <div class="fixed inset-0 bg-slate-950/95 backdrop-blur-xl" onclick="closeDemoModal()"></div>
+        <div class="relative min-h-screen flex items-center justify-center p-4">
+            <div class="relative bg-white dark:bg-darker w-full max-w-6xl rounded-[2.5rem] overflow-hidden border border-white/10">
+                <div class="flex flex-col lg:flex-row">
+                    <div class="lg:w-[70%] bg-slate-100 dark:bg-[#050505] flex items-center justify-center p-4">
+                        <img id="modal-image" src="" class="max-w-full h-auto max-h-[80vh] rounded-xl shadow-2xl">
+                    </div>
+                    <div class="lg:w-[30%] p-10 flex flex-col justify-between">
+                        <div>
+                            <h3 id="modal-title" class="text-3xl font-black mb-4">Title</h3>
+                            <div id="modal-tags" class="flex flex-wrap gap-2 mb-6"></div>
+                            <p id="modal-description" class="text-slate-500 text-sm leading-relaxed mb-8"></p>
+                        </div>
+                        <a href="#" id="modal-source-btn" target="_blank" class="w-full py-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-center font-bold rounded-2xl">GitHub Source</a>
+                    </div>
+                </div>
+                <button onclick="closeDemoModal()" class="absolute top-6 right-6 w-10 h-10 bg-white dark:bg-surface rounded-full flex items-center justify-center shadow-xl"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-white dark:bg-dark">
+        <div class="container mx-auto px-6 md:px-12 text-center">
+            <h2 class="text-4xl font-bold mb-8">Hubungi Saya</h2>
+            <div class="flex flex-col md:flex-row justify-center gap-8">
+                <a href="mailto:galihsaputra3139@gmail.com" class="p-6 bg-slate-50 dark:bg-surface rounded-3xl flex items-center gap-4 hover:scale-105 transition-all">
+                    <i class="fas fa-envelope text-primary text-2xl"></i>
+                    <span>galihsaputra3139@gmail.com</span>
+                </a>
+                <a href="https://wa.me/6283134110144" target="_blank" class="p-6 bg-slate-50 dark:bg-surface rounded-3xl flex items-center gap-4 hover:scale-105 transition-all">
+                    <i class="fab fa-whatsapp text-green-500 text-2xl"></i>
+                    <span>083134110144</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+        // Dynamic Glow Card
+        document.querySelectorAll('.dynamic-glow-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+                card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+            });
+        });
+    </script>
+</body>
+</html>
