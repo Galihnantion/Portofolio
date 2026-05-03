@@ -58,7 +58,7 @@
     </script>
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         .neon-primary {
             text-shadow: 0 0 5px #fff, 0 0 10px #4F46E5, 0 0 20px #4F46E5, 0 0 40px #4F46E5;
@@ -967,7 +967,7 @@
     <!-- AOS Script -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <!-- Custom Script -->
-    <script src="script.js"></script>
+
     
     <script>
         // Dynamic Skills Effect
