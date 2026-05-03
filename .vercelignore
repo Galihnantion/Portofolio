@@ -1,0 +1,12 @@
+/node_modules
+/vendor
+/storage/*.key
+.env
+.env.example
+.git
+.gitignore
+composer.lock
+package-lock.json
+phpunit.xml
+vite.config.js
+/tests
