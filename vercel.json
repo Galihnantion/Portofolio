@@ -2,10 +2,9 @@
     "version": 2,
     "functions": {
         "api/index.php": {
-            "runtime": "juicyfx/vercel-php@0.7.1"
+            "runtime": "vercel-php@0.7.1"
         }
     },
-    "nodeVersion": "22.x",
     "routes": [
         {
             "src": "/(css|js|images|favicon.ico|robots.txt|style.css|script.js|build|images/.*)(.*)",
@@ -17,6 +16,7 @@
         }
     ],
     "env": {
+        "APP_KEY": "base64:XXfIdMlFQ/WGpsremf+UWqBnBopMwb+T8bDfEX8wY2w=",
         "APP_ENV": "production",
         "APP_DEBUG": "false",
         "LOG_CHANNEL": "stderr",

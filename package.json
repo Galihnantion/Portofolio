@@ -3,11 +3,9 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "build": "echo 'Build skipped: using public assets instead'",
-        "dev": "vite"
     },
     "engines": {
-        "node": "22.x"
+        "node": "20.x"
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.2.1",
