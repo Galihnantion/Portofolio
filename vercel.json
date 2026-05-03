@@ -2,10 +2,10 @@
     "version": 2,
     "functions": {
         "api/index.php": {
-            "runtime": "vercel-php@0.7.1"
+            "runtime": "juicyfx/vercel-php@0.7.1"
         }
     },
-    "nodeVersion": "22",
+    "nodeVersion": "22.x",
     "routes": [
         {
             "src": "/(css|js|images|favicon.ico|robots.txt|style.css|script.js|build|images/.*)(.*)",
