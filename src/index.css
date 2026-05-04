@@ -17,6 +17,12 @@
   }
 }
 
+@media (min-width: 768px) {
+  body, a, button, input, textarea {
+    cursor: none !important;
+  }
+}
+
 @layer components {
   .glass {
     @apply bg-white/10 backdrop-blur-md border border-white/20;

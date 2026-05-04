@@ -30,7 +30,8 @@ import {
   Globe,
   Gamepad2,
   Trophy,
-  Sparkles
+  Sparkles,
+  Download
 } from 'lucide-react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -154,6 +155,92 @@ const FloatingIcon = ({ icon: Icon, className, delay = 0, size = 24 }) => (
     </div>
   </motion.div>
 );
+
+const playClickSound = () => {
+  try {
+    // using a tiny base64 bubble pop sound for a sleek UI experience
+    const audio = new Audio('data:audio/wav;base64,UklGRjIAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAAABmYWN0BAAAAAAAAABkYXRhDAAAAAAAAACPj4+Pj4+Pj48=');
+    audio.volume = 0.5;
+    audio.play().catch(() => {});
+  } catch (e) {}
+};
+
+const CustomCursor = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+
+  useEffect(() => {
+    const updateMousePosition = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    const handleMouseOver = (e) => {
+      if (e.target.tagName.toLowerCase() === 'button' || 
+          e.target.tagName.toLowerCase() === 'a' ||
+          e.target.closest('button') ||
+          e.target.closest('a')) {
+        setIsHovering(true);
+      } else {
+        setIsHovering(false);
+      }
+    };
+    window.addEventListener("mousemove", updateMousePosition);
+    window.addEventListener("mouseover", handleMouseOver);
+    return () => {
+      window.removeEventListener("mousemove", updateMousePosition);
+      window.removeEventListener("mouseover", handleMouseOver);
+    };
+  }, []);
+
+  if (typeof window !== 'undefined' && window.innerWidth < 768) return null;
+
+  return (
+    <>
+      <motion.div
+        className="fixed top-0 left-0 w-4 h-4 bg-primary rounded-full pointer-events-none z-[9999] mix-blend-difference hidden md:block"
+        animate={{
+          x: mousePosition.x - 8,
+          y: mousePosition.y - 8,
+          scale: isHovering ? 2 : 1,
+        }}
+        transition={{ type: "tween", ease: "backOut", duration: 0.1 }}
+      />
+      <motion.div
+        className="fixed top-0 left-0 w-10 h-10 border border-primary/50 rounded-full pointer-events-none z-[9998] hidden md:block"
+        animate={{
+          x: mousePosition.x - 20,
+          y: mousePosition.y - 20,
+          scale: isHovering ? 1.5 : 1,
+        }}
+        transition={{ type: "tween", ease: "easeOut", duration: 0.2 }}
+      />
+    </>
+  );
+};
+
+const TechStackMarquee = () => {
+  const techStack = [
+    "React", "Laravel", "Tailwind CSS", "JavaScript", "PHP", "MySQL", 
+    "Git", "GitHub", "Vite", "Node.js", "Figma", "HTML5", "CSS3"
+  ];
+  return (
+    <div className="py-6 md:py-10 bg-slate-100/50 dark:bg-slate-900/50 border-y border-slate-200 dark:border-slate-800 overflow-hidden relative flex">
+      <div className="absolute left-0 top-0 bottom-0 w-12 md:w-32 bg-gradient-to-r from-slate-50 dark:from-slate-950 to-transparent z-10" />
+      <div className="absolute right-0 top-0 bottom-0 w-12 md:w-32 bg-gradient-to-l from-slate-50 dark:from-slate-950 to-transparent z-10" />
+      <motion.div 
+        className="flex gap-8 md:gap-16 whitespace-nowrap px-8"
+        animate={{ x: [0, -2000] }}
+        transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
+      >
+        {[...techStack, ...techStack, ...techStack, ...techStack].map((tech, i) => (
+          <div key={i} className="flex items-center gap-2 md:gap-4 text-xl md:text-3xl font-black text-slate-400 dark:text-slate-600 hover:text-primary transition-colors">
+            <Sparkles className="w-5 h-5 md:w-8 md:h-8 text-primary/50" />
+            {tech}
+          </div>
+        ))}
+      </motion.div>
+    </div>
+  );
+};
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -665,6 +752,7 @@ export default function App() {
 
   return (
     <div className="bg-slate-50 dark:bg-slate-950 overflow-x-hidden">
+      <CustomCursor />
       <Navbar />
 
       {/* --- HERO SECTION --- */}
@@ -717,11 +805,15 @@ export default function App() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6"
+                className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 md:gap-6"
               >
-                <a href="#projects" className="group px-8 py-4 rounded-3xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-black text-lg shadow-2xl hover:scale-105 transition-all flex items-center gap-3">
+                <a href="#projects" onClick={playClickSound} className="group px-8 py-4 rounded-3xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-black text-lg shadow-2xl hover:scale-105 transition-all flex items-center justify-center gap-3 w-full sm:w-auto">
                   Lihat Karya Saya <ArrowRight className="group-hover:translate-x-2 transition-transform" />
                 </a>
+                <a href="#" onClick={(e) => { e.preventDefault(); playClickSound(); alert('PDF CV Anda belum ditautkan. Hubungkan file PDF Anda di kode nanti ya!'); }} className="group px-8 py-4 rounded-3xl bg-white dark:bg-slate-900 text-slate-900 dark:text-white border-2 border-slate-200 dark:border-slate-800 font-black text-lg shadow-lg hover:border-primary dark:hover:border-primary hover:text-primary transition-all flex items-center justify-center gap-3 w-full sm:w-auto">
+                  Download CV <Download className="group-hover:-translate-y-1 transition-transform" />
+                </a>
+              </motion.div>
                 <div className="flex items-center gap-4">
                   {[
                     { icon: <Github />, href: 'https://github.com/Galihnantion' },
@@ -806,6 +898,9 @@ export default function App() {
         </div>
       </section>
 
+      {/* --- TECH STACK MARQUEE --- */}
+      <TechStackMarquee />
+
       {/* --- ABOUT SECTION --- */}
       <section id="about" className="section-padding bg-white dark:bg-slate-950 overflow-hidden relative">
         <FloatingIcon icon={Heart} className="top-20 right-10" delay={1} size={30} />
@@ -839,7 +934,7 @@ export default function App() {
                 <p>Perjalanan saya didorong oleh komitmen untuk mengubah ide-ide konseptual menjadi solusi digital intuitif dan berperforma tinggi yang memberikan dampak nyata.</p>
               </div>
 
-              <div className="grid grid-cols-2 gap-8 md:gap-12 mt-12">
+              <div className="grid grid-cols-2 gap-8 md:gap-12 mt-12 mb-10">
                 <div>
                   <h4 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-2">3+</h4>
                   <p className="text-[10px] md:text-xs font-black uppercase tracking-widest text-slate-500">Proyek Utama</p>
@@ -848,6 +943,16 @@ export default function App() {
                   <h4 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-2">100%</h4>
                   <p className="text-[10px] md:text-xs font-black uppercase tracking-widest text-slate-500">Tingkat Dedikasi</p>
                 </div>
+              </div>
+
+              {/* GitHub Stats */}
+              <div className="mt-8 pt-8 border-t border-slate-200 dark:border-slate-800" data-aos="fade-up">
+                <span className="text-xs font-black uppercase tracking-[0.3em] text-slate-500 mb-6 block">Live GitHub Stats</span>
+                <img 
+                  src="https://github-readme-stats.vercel.app/api?username=Galihnantion&show_icons=true&theme=transparent&hide_border=true&title_color=EC4899&icon_color=F472B6&text_color=94a3b8" 
+                  alt="GitHub Stats" 
+                  className="w-full max-w-md pointer-events-none drop-shadow-xl"
+                />
               </div>
             </div>
           </div>
