@@ -1,0 +1,125 @@
+/* --- Global Styles --- */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- Scrollbar Customization --- */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+    background: #4f46e5;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #6366f1;
+}
+
+/* --- Navigation & Glassmorphism --- */
+.glass-nav {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark .glass-nav {
+    background: rgba(15, 23, 42, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* --- Dynamic Glow Card Effect --- */
+.dynamic-glow-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.dynamic-glow-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: radial-gradient(
+        600px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+        rgba(79, 70, 229, 0.15),
+        transparent 40%
+    );
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.dynamic-glow-card:hover::before {
+    opacity: 1;
+}
+
+/* Ensure content stays above the glow */
+.dynamic-glow-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* --- Typography & Gradients --- */
+.text-gradient {
+    background: linear-gradient(to right, #4f46e5, #0ea5e9, #f43f5e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* --- Animations --- */
+@keyframes zoom-in {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.animate-zoom-in {
+    animation: zoom-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Project Card Hover */
+.project-card-image {
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.group:hover .project-card-image {
+    transform: scale(1.1);
+}
+
+/* --- Custom Utilities --- */
+.bg-darker {
+    background-color: #020617;
+}
+
+.bg-surface {
+    background-color: #1e293b;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 3rem !important; /* text-5xl fallback */
+    }
+}
