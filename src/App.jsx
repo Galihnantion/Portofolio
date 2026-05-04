@@ -149,8 +149,8 @@ const FloatingIcon = ({ icon: Icon, className, delay = 0, size = 24 }) => (
     }}
     className={`absolute pointer-events-none z-0 ${className}`}
   >
-    <div className="p-4 rounded-2xl border border-indigo-400/40 bg-indigo-500/5 shadow-[0_0_25px_4px_rgba(99,102,241,0.25)] transition-all">
-      <Icon size={size} className="text-indigo-400/80" />
+    <div className="p-4 rounded-2xl border border-primary/40 bg-primary/5 shadow-[0_0_25px_4px_rgba(244,114,182,0.25)] transition-all">
+      <Icon size={size} className="text-primary/80" />
     </div>
   </motion.div>
 );
@@ -722,7 +722,7 @@ export default function App() {
                 <motion.div 
                   animate={{ y: [0, -20, 0], rotate: [0, 10, 0] }}
                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute top-6 left-6 z-20 w-12 h-12 md:w-16 md:h-16 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl flex items-center justify-center text-indigo-400 border border-slate-100 dark:border-slate-800"
+                  className="absolute top-6 left-6 z-20 w-12 h-12 md:w-16 md:h-16 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl flex items-center justify-center text-primary border border-slate-100 dark:border-slate-800"
                 >
                   <Code className="w-6 h-6 md:w-8 md:h-8" />
                 </motion.div>
@@ -730,7 +730,7 @@ export default function App() {
                 <motion.div 
                   animate={{ y: [0, 20, 0], rotate: [0, -15, 0] }}
                   transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                  className="absolute bottom-6 right-6 z-20 w-12 h-12 md:w-16 md:h-16 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl flex items-center justify-center text-cyan-400 border border-slate-100 dark:border-slate-800"
+                  className="absolute bottom-6 right-6 z-20 w-12 h-12 md:w-16 md:h-16 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl flex items-center justify-center text-secondary border border-slate-100 dark:border-slate-800"
                 >
                   <Layout className="w-6 h-6 md:w-8 md:h-8" />
                 </motion.div>

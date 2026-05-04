@@ -10,27 +10,21 @@ export default {
       colors: {
         primary: {
           // DEFAULT: '#4F46E5', // Indigo 600 (ORIGINAL)
-          // light: '#6366F1',
-          // dark: '#4338CA',
-          DEFAULT: '#EC4899', // Pink 500
-          light: '#F472B6', // Pink 400
-          dark: '#DB2777', // Pink 600
+          DEFAULT: '#F472B6', // Soft Pink (Pink 400)
+          light: '#F9A8D4', // Pink 300
+          dark: '#EC4899', // Pink 500
         },
         secondary: {
           // DEFAULT: '#0EA5E9', // Sky 500 (ORIGINAL)
-          // light: '#38BDF8',
-          // dark: '#0284C7',
-          DEFAULT: '#D946EF', // Fuchsia 500
-          light: '#E879F9', // Fuchsia 400
-          dark: '#C026D3', // Fuchsia 600
+          DEFAULT: '#FDA4AF', // Soft Rose (Rose 300)
+          light: '#FECDD3', // Rose 200
+          dark: '#FB7185', // Rose 400
         },
         accent: {
           // DEFAULT: '#F43F5E', // Rose 500 (ORIGINAL)
-          // light: '#FB7185',
-          // dark: '#E11D48',
-          DEFAULT: '#F43F5E', // Rose 500 (Keep as is or similar pinkish)
-          light: '#FB7185',
-          dark: '#E11D48',
+          DEFAULT: '#F0ABFC', // Soft Fuchsia (Fuchsia 300)
+          light: '#E879F9',
+          dark: '#D946EF',
         },
         slate: {
           950: '#020617',
