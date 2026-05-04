@@ -209,18 +209,18 @@ const playWhooshSound = () => {
     const noiseSource = ctx.createBufferSource();
     noiseSource.buffer = buffer;
     
-    // Filter the noise to sound like wind/whoosh
+    // Filter the noise to sound like a gentle breeze
     const filter = ctx.createBiquadFilter();
-    filter.type = 'bandpass';
-    filter.Q.value = 1;
-    filter.frequency.setValueAtTime(1500, ctx.currentTime);
-    filter.frequency.exponentialRampToValueAtTime(200, ctx.currentTime + 0.5);
+    filter.type = 'lowpass';
+    filter.Q.value = 0.5;
+    filter.frequency.setValueAtTime(800, ctx.currentTime);
+    filter.frequency.exponentialRampToValueAtTime(100, ctx.currentTime + 0.4);
     
     const gain = ctx.createGain();
-    // Fade in and out envelope
+    // Fade in and out envelope - much softer volume
     gain.gain.setValueAtTime(0.01, ctx.currentTime);
-    gain.gain.linearRampToValueAtTime(1.5, ctx.currentTime + 0.1); // louder whoosh
-    gain.gain.linearRampToValueAtTime(0.01, ctx.currentTime + 0.5);
+    gain.gain.linearRampToValueAtTime(0.3, ctx.currentTime + 0.1); // softer peak
+    gain.gain.linearRampToValueAtTime(0.01, ctx.currentTime + 0.4);
     
     noiseSource.connect(filter);
     filter.connect(gain);
