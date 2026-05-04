@@ -167,6 +167,15 @@ const playClickSound = () => {
   } catch (e) {}
 };
 
+const playWhooshSound = () => {
+  try {
+    // swoosh sound for smooth scrolling
+    const audio = new Audio('https://cdn.pixabay.com/download/audio/2022/03/15/audio_79ce58a0de.mp3?filename=whoosh-6316.mp3');
+    audio.volume = 0.2;
+    audio.play().catch(() => {});
+  } catch (e) {}
+};
+
 const CustomCursor = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
@@ -315,7 +324,7 @@ const Navbar = () => {
             <motion.a
               key={link.name}
               href={link.href}
-              onClick={playClickSound}
+              onClick={playWhooshSound}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
@@ -334,7 +343,7 @@ const Navbar = () => {
           </motion.button>
           <motion.a
             href="#contact"
-            onClick={playClickSound}
+            onClick={playWhooshSound}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="px-6 py-3 rounded-full bg-primary text-white text-sm font-bold shadow-lg shadow-primary/20 whitespace-nowrap"
@@ -393,7 +402,7 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
-                onClick={() => { playClickSound(); setIsMobileMenuOpen(false); }}
+                onClick={() => { playWhooshSound(); setIsMobileMenuOpen(false); }}
                 style={{ display: 'block', padding: '18px 24px', borderRadius: 16, fontSize: 20, fontWeight: 900, touchAction: 'manipulation', WebkitTapHighlightColor: 'transparent' }}
                 className="text-slate-900 dark:text-white active:bg-slate-100 dark:active:bg-slate-900"
               >
@@ -406,7 +415,7 @@ const Navbar = () => {
           <div style={{ padding: '16px 24px 40px', flexShrink: 0 }} className="border-t border-slate-100 dark:border-slate-800">
             <a
               href="#contact"
-              onClick={() => { playClickSound(); setIsMobileMenuOpen(false); }}
+              onClick={() => { playWhooshSound(); setIsMobileMenuOpen(false); }}
               style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', padding: '14px', borderRadius: 12, fontWeight: 700, fontSize: 16, touchAction: 'manipulation', WebkitTapHighlightColor: 'transparent' }}
               className="bg-primary text-white shadow-lg"
             >
