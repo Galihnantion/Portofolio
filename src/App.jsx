@@ -420,15 +420,30 @@ const allQuizzes = [
   { q: "Apa nama samudra terluas di dunia?", options: ["Pasifik", "Atlantik", "Hindia", "Arktik"], a: 0 },
   { q: "Alat musik yang dimainkan dengan cara digesek adalah?", options: ["Gitar", "Biola", "Seruling", "Piano"], a: 1 },
   { q: "Negara mana yang memiliki peta berbentuk seperti sepatu bot?", options: ["Prancis", "Spanyol", "Italia", "Jerman"], a: 2 },
-  { q: "Apa warna yang dihasilkan dari campuran merah dan biru?", options: ["Hijau", "Kuning", "Ungu", "Coklat"], a: 2 }
+  { q: "Apa warna yang dihasilkan dari campuran merah dan biru?", options: ["Hijau", "Kuning", "Ungu", "Coklat"], a: 2 },
+  { q: "Benua terkecil di dunia adalah?", options: ["Eropa", "Australia", "Antartika", "Amerika Selatan"], a: 1 },
+  { q: "Mata uang resmi dari negara Jepang adalah?", options: ["Yuan", "Won", "Yen", "Baht"], a: 2 },
+  { q: "Apa nama ibu kota Korea Selatan?", options: ["Seoul", "Pyongyang", "Tokyo", "Beijing"], a: 0 },
+  { q: "Hewan apa yang dijuluki sebagai 'raja hutan'?", options: ["Harimau", "Gajah", "Singa", "Beruang"], a: 2 },
+  { q: "Unit dasar dan terkecil pembentuk materi adalah?", options: ["Sel", "Molekul", "Proton", "Atom"], a: 3 }
 ];
 
 const allRiddles = [
-  { q: "Saya selalu ada di depanmu, tetapi tidak pernah bisa dilihat. Apakah saya?", a: ["masa depan", "masadepan"], displayAnswer: "Masa Depan", hint: "Pikirkan tentang waktu." },
+  { q: "Saya selalu ada di depanmu, tetapi tidak pernah bisa dilihat. Apakah saya?", a: ["masa depan", "masadepan"], displayAnswer: "Masa Depan", hint: "Pikirkan tentang waktu yang belum terjadi." },
   { q: "Saya bisa berbicara tanpa mulut dan mendengar tanpa telinga. Saya tidak punya tubuh, tetapi menjadi hidup dengan angin. Siapakah saya?", a: ["gema"], displayAnswer: "Gema", hint: "Suara pantulan di gua atau tebing." },
   { q: "Semakin banyak kamu mengambilku, semakin banyak yang kamu tinggalkan. Apakah aku?", a: ["jejak langkah", "jejak", "langkah"], displayAnswer: "Jejak Langkah", hint: "Sesuatu yang tertinggal saat kamu berjalan di atas pasir." },
-  { q: "Saya memiliki tuts tetapi bukan pintu. Saya memiliki ruang tetapi tidak ada kamar. Kamu bisa masuk tapi tak bisa ke luar. Apakah saya?", a: ["keyboard", "papan ketik"], displayAnswer: "Keyboard", hint: "Alat yang biasa digunakan untuk mengetik." },
-  { q: "Apa yang harus dipecahkan sebelum bisa digunakan?", a: ["telur"], displayAnswer: "Telur", hint: "Bahan pembuat kue atau dadar." }
+  { q: "Saya memiliki tuts tetapi bukan pintu. Saya memiliki ruang tetapi tidak ada kamar. Kamu bisa masuk tapi tak bisa ke luar. Apakah saya?", a: ["keyboard", "papan ketik"], displayAnswer: "Keyboard", hint: "Alat yang biasa digunakan untuk mengetik di komputer." },
+  { q: "Apa yang harus dipecahkan sebelum bisa digunakan?", a: ["telur"], displayAnswer: "Telur", hint: "Bahan makanan pembuat kue atau dadar." },
+  { q: "Saya punya banyak gigi, tetapi saya tidak bisa menggigit siapa pun. Siapakah saya?", a: ["sisir"], displayAnswer: "Sisir", hint: "Benda yang digunakan untuk merapikan rambut." },
+  { q: "Saya bisa ditangkap, tetapi tidak pernah bisa dilempar. Apakah saya?", a: ["penyakit", "pilek", "flu", "batuk"], displayAnswer: "Pilek / Penyakit", hint: "Sesuatu yang membuatmu harus beristirahat di kasur." },
+  { q: "Saya bisa berjalan tanpa kaki dan menangis tanpa mata. Siapakah saya?", a: ["awan", "mendung"], displayAnswer: "Awan", hint: "Sesuatu di langit yang membawa hujan." },
+  { q: "Saya punya leher tapi tidak punya kepala, punya lengan tapi tidak punya tangan. Apakah saya?", a: ["baju", "kemeja", "kaos"], displayAnswer: "Baju / Kemeja", hint: "Sesuatu yang kamu pakai setiap hari." },
+  { q: "Bulan apa yang memiliki 28 hari?", a: ["semua bulan", "semua", "setiap bulan", "semuanya"], displayAnswer: "Semua Bulan", hint: "Jangan hanya terpaku pada bulan Februari." },
+  { q: "Semakin basah saya saat saya mengeringkan sesuatu. Apakah saya?", a: ["handuk"], displayAnswer: "Handuk", hint: "Kain yang kamu pakai setelah mandi." },
+  { q: "Saya tidak pernah bertanya, tetapi saya selalu dijawab. Siapakah saya?", a: ["telepon", "hp", "handphone", "bel rumah", "bel"], displayAnswer: "Telepon / Bel", hint: "Sesuatu yang berdering saat ada panggilan." },
+  { q: "Jika kamu memilikiku, kamu ingin membagiku. Tapi jika kamu membagiku, kamu tidak memilikiku lagi. Apakah aku?", a: ["rahasia"], displayAnswer: "Rahasia", hint: "Sesuatu yang disembunyikan dari orang lain." },
+  { q: "Apa yang memiliki 13 buah hati tetapi tidak memiliki organ lain?", a: ["kartu remi", "remi", "kartu poker"], displayAnswer: "Kartu Remi", hint: "Salah satu jenis permainan yang biasa dimainkan di kasino." },
+  { q: "Sesuatu yang selalu jatuh tetapi tidak pernah rusak. Apakah itu?", a: ["malam", "hujan"], displayAnswer: "Hujan / Malam", hint: "Fenomena alam atau waktu." }
 ];
 
 const InteractiveSection = () => {
