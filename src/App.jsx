@@ -805,15 +805,17 @@ export default function App() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 md:gap-6"
+                className="flex flex-col xl:flex-row items-center justify-center lg:justify-start gap-6 mt-8"
               >
-                <a href="#projects" onClick={playClickSound} className="group px-8 py-4 rounded-3xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-black text-lg shadow-2xl hover:scale-105 transition-all flex items-center justify-center gap-3 w-full sm:w-auto">
-                  Lihat Karya Saya <ArrowRight className="group-hover:translate-x-2 transition-transform" />
-                </a>
-                <a href="#" onClick={(e) => { e.preventDefault(); playClickSound(); alert('PDF CV Anda belum ditautkan. Hubungkan file PDF Anda di kode nanti ya!'); }} className="group px-8 py-4 rounded-3xl bg-white dark:bg-slate-900 text-slate-900 dark:text-white border-2 border-slate-200 dark:border-slate-800 font-black text-lg shadow-lg hover:border-primary dark:hover:border-primary hover:text-primary transition-all flex items-center justify-center gap-3 w-full sm:w-auto">
-                  Download CV <Download className="group-hover:-translate-y-1 transition-transform" />
-                </a>
-              </motion.div>
+                <div className="flex flex-col sm:flex-row gap-4 w-full xl:w-auto">
+                  <a href="#projects" onClick={playClickSound} className="group px-6 md:px-8 py-4 rounded-3xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-black text-lg shadow-2xl hover:scale-105 transition-all flex items-center justify-center gap-3">
+                    Lihat Karya <ArrowRight className="group-hover:translate-x-2 transition-transform" />
+                  </a>
+                  <a href="#" onClick={(e) => { e.preventDefault(); playClickSound(); alert('PDF CV Anda belum ditautkan. Hubungkan file PDF Anda di kode nanti ya!'); }} className="group px-6 md:px-8 py-4 rounded-3xl bg-white dark:bg-slate-900 text-slate-900 dark:text-white border-2 border-slate-200 dark:border-slate-800 font-black text-lg shadow-lg hover:border-primary dark:hover:border-primary hover:text-primary transition-all flex items-center justify-center gap-3">
+                    Unduh CV <Download className="group-hover:-translate-y-1 transition-transform" />
+                  </a>
+                </div>
+
                 <div className="flex items-center gap-4">
                   {[
                     { icon: <Github />, href: 'https://github.com/Galihnantion' },
