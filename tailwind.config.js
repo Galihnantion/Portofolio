@@ -9,17 +9,26 @@ export default {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#4F46E5', // Indigo 600
-          light: '#6366F1',
-          dark: '#4338CA',
+          // DEFAULT: '#4F46E5', // Indigo 600 (ORIGINAL)
+          // light: '#6366F1',
+          // dark: '#4338CA',
+          DEFAULT: '#EC4899', // Pink 500
+          light: '#F472B6', // Pink 400
+          dark: '#DB2777', // Pink 600
         },
         secondary: {
-          DEFAULT: '#0EA5E9', // Sky 500
-          light: '#38BDF8',
-          dark: '#0284C7',
+          // DEFAULT: '#0EA5E9', // Sky 500 (ORIGINAL)
+          // light: '#38BDF8',
+          // dark: '#0284C7',
+          DEFAULT: '#D946EF', // Fuchsia 500
+          light: '#E879F9', // Fuchsia 400
+          dark: '#C026D3', // Fuchsia 600
         },
         accent: {
-          DEFAULT: '#F43F5E', // Rose 500
+          // DEFAULT: '#F43F5E', // Rose 500 (ORIGINAL)
+          // light: '#FB7185',
+          // dark: '#E11D48',
+          DEFAULT: '#F43F5E', // Rose 500 (Keep as is or similar pinkish)
           light: '#FB7185',
           dark: '#E11D48',
         },
