@@ -158,21 +158,75 @@ const FloatingIcon = ({ icon: Icon, className, delay = 0, size = 24 }) => (
   </motion.div>
 );
 
+// --- Audio Helpers using Web Audio API ---
+const getAudioContext = () => {
+  if (typeof window === 'undefined') return null;
+  if (!window.audioCtx) {
+    window.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  return window.audioCtx;
+};
+
 const playClickSound = () => {
   try {
-    // using a tiny base64 bubble pop sound for a sleek UI experience
-    const audio = new Audio('data:audio/wav;base64,UklGRjIAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAAABmYWN0BAAAAAAAAABkYXRhDAAAAAAAAACPj4+Pj4+Pj48=');
-    audio.volume = 1.0;
-    audio.play().catch(() => {});
+    const ctx = getAudioContext();
+    if (!ctx) return;
+    if (ctx.state === 'suspended') ctx.resume();
+    
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    
+    osc.type = 'sine';
+    // Frequency sweep down creates a "pop/bubble" sound
+    osc.frequency.setValueAtTime(800, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(300, ctx.currentTime + 0.1);
+    
+    gain.gain.setValueAtTime(1, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
+    
+    osc.start(ctx.currentTime);
+    osc.stop(ctx.currentTime + 0.1);
   } catch (e) {}
 };
 
 const playWhooshSound = () => {
   try {
-    // swoosh sound for smooth scrolling
-    const audio = new Audio('https://cdn.pixabay.com/download/audio/2022/03/15/audio_79ce58a0de.mp3?filename=whoosh-6316.mp3');
-    audio.volume = 1.0;
-    audio.play().catch(() => {});
+    const ctx = getAudioContext();
+    if (!ctx) return;
+    if (ctx.state === 'suspended') ctx.resume();
+    
+    // Create white noise
+    const bufferSize = ctx.sampleRate * 0.5; // 0.5 seconds
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+        data[i] = Math.random() * 2 - 1;
+    }
+    
+    const noiseSource = ctx.createBufferSource();
+    noiseSource.buffer = buffer;
+    
+    // Filter the noise to sound like wind/whoosh
+    const filter = ctx.createBiquadFilter();
+    filter.type = 'bandpass';
+    filter.Q.value = 1;
+    filter.frequency.setValueAtTime(1500, ctx.currentTime);
+    filter.frequency.exponentialRampToValueAtTime(200, ctx.currentTime + 0.5);
+    
+    const gain = ctx.createGain();
+    // Fade in and out envelope
+    gain.gain.setValueAtTime(0.01, ctx.currentTime);
+    gain.gain.linearRampToValueAtTime(1.5, ctx.currentTime + 0.1); // louder whoosh
+    gain.gain.linearRampToValueAtTime(0.01, ctx.currentTime + 0.5);
+    
+    noiseSource.connect(filter);
+    filter.connect(gain);
+    gain.connect(ctx.destination);
+    
+    noiseSource.start(ctx.currentTime);
   } catch (e) {}
 };
 
