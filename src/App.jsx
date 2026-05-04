@@ -619,6 +619,38 @@ const InteractiveSection = () => {
   );
 };
 
+const VisitorCounter = () => {
+  const [count, setCount] = useState(null);
+
+  useEffect(() => {
+    fetch('https://api.counterapi.dev/v1/galihsptr/portfolio/up')
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.count) setCount(data.count);
+      })
+      .catch(err => console.error('Error fetching counter:', err));
+  }, []);
+
+  if (count === null) return null;
+
+  return (
+    <motion.div 
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm mt-8 mx-auto"
+    >
+      <div className="relative flex h-2.5 w-2.5">
+        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+      </div>
+      <span className="text-xs md:text-sm font-bold text-slate-500">
+        Dilihat oleh <span className="text-slate-900 dark:text-white font-black text-sm md:text-base">{count.toLocaleString('id-ID')}</span> orang
+      </span>
+    </motion.div>
+  );
+};
+
 export default function App() {
   const [selectedProject, setSelectedProject] = useState(null);
 
@@ -1143,7 +1175,9 @@ export default function App() {
             ))}
           </div>
 
-          <p className="text-xs md:text-sm text-slate-500 font-bold">
+          <VisitorCounter />
+
+          <p className="text-xs md:text-sm text-slate-500 font-bold mt-10 md:mt-12">
             &copy; {new Date().getFullYear()} Muhamad Galih Saputra. SMK Telkom Lampung.
           </p>
         </div>
