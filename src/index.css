@@ -4,13 +4,8 @@
 
 @layer base {
   :root {
-    /* ORIGINAL COLORS (Uncomment to restore) */
-    /* --primary: 238.7 83.5% 58.8%; */
-    /* --secondary: 198.6 88.7% 48.4%; */
-    
-    /* SOFT PINK THEME */
-    --primary: 329 86% 70%;
-    --secondary: 352 96% 82%;
+    --primary: 238.7 83.5% 58.8%;
+    --secondary: 198.6 88.7% 48.4%;
   }
 
   html {
