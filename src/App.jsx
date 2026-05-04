@@ -423,12 +423,21 @@ const allQuizzes = [
   { q: "Apa warna yang dihasilkan dari campuran merah dan biru?", options: ["Hijau", "Kuning", "Ungu", "Coklat"], a: 2 }
 ];
 
+const allRiddles = [
+  { q: "Saya selalu ada di depanmu, tetapi tidak pernah bisa dilihat. Apakah saya?", a: ["masa depan", "masadepan"], displayAnswer: "Masa Depan", hint: "Pikirkan tentang waktu." },
+  { q: "Saya bisa berbicara tanpa mulut dan mendengar tanpa telinga. Saya tidak punya tubuh, tetapi menjadi hidup dengan angin. Siapakah saya?", a: ["gema"], displayAnswer: "Gema", hint: "Suara pantulan di gua atau tebing." },
+  { q: "Semakin banyak kamu mengambilku, semakin banyak yang kamu tinggalkan. Apakah aku?", a: ["jejak langkah", "jejak", "langkah"], displayAnswer: "Jejak Langkah", hint: "Sesuatu yang tertinggal saat kamu berjalan di atas pasir." },
+  { q: "Saya memiliki tuts tetapi bukan pintu. Saya memiliki ruang tetapi tidak ada kamar. Kamu bisa masuk tapi tak bisa ke luar. Apakah saya?", a: ["keyboard", "papan ketik"], displayAnswer: "Keyboard", hint: "Alat yang biasa digunakan untuk mengetik." },
+  { q: "Apa yang harus dipecahkan sebelum bisa digunakan?", a: ["telur"], displayAnswer: "Telur", hint: "Bahan pembuat kue atau dadar." }
+];
+
 const InteractiveSection = () => {
   const [activeTab, setActiveTab] = useState('riddle');
+  
+  const [currentRiddle, setCurrentRiddle] = useState(allRiddles[0]);
   const [riddleAnswer, setRiddleAnswer] = useState('');
   const [riddleSolved, setRiddleSolved] = useState(false);
   const [riddleError, setRiddleError] = useState(false);
-  const [showRiddleHint, setShowRiddleHint] = useState(false);
   
   const [activeQuizzes, setActiveQuizzes] = useState([]);
   const [quizScore, setQuizScore] = useState(0);
@@ -437,18 +446,24 @@ const InteractiveSection = () => {
 
   useEffect(() => {
     resetQuiz();
+    resetRiddle();
   }, []);
 
-  const riddle = {
-    q: "Saya selalu ada di depanmu, tetapi tidak pernah bisa dilihat. Apakah saya?",
-    a: ["masa depan", "masadepan"],
-    displayAnswer: "Masa Depan"
+  const resetRiddle = () => {
+    let newRiddle;
+    do {
+      newRiddle = allRiddles[Math.floor(Math.random() * allRiddles.length)];
+    } while (allRiddles.length > 1 && newRiddle.q === currentRiddle?.q); // avoid same riddle twice in a row
+    setCurrentRiddle(newRiddle);
+    setRiddleAnswer('');
+    setRiddleSolved(false);
+    setRiddleError(false);
   };
 
   const handleRiddleSubmit = (e) => {
     e.preventDefault();
     const ans = riddleAnswer.toLowerCase().trim();
-    if(riddle.a.includes(ans)) {
+    if(currentRiddle.a.some(validAns => ans.includes(validAns))) {
       setRiddleSolved(true);
       setRiddleError(false);
     } else {
@@ -458,7 +473,7 @@ const InteractiveSection = () => {
   };
 
   const showAnswer = () => {
-    setRiddleAnswer(riddle.displayAnswer);
+    setRiddleAnswer(currentRiddle.displayAnswer);
     setRiddleSolved(true);
     setRiddleError(false);
   };
@@ -515,7 +530,7 @@ const InteractiveSection = () => {
                   <div className="w-20 h-20 mx-auto bg-primary/10 rounded-3xl flex items-center justify-center mb-8 rotate-12">
                     <Sparkles className="text-primary w-10 h-10 -rotate-12" />
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white mb-10 leading-relaxed max-w-2xl mx-auto">"{riddle.q}"</h3>
+                  <h3 className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white mb-10 leading-relaxed max-w-2xl mx-auto">"{currentRiddle.q}"</h3>
                   <form onSubmit={handleRiddleSubmit} className="max-w-md mx-auto relative mb-6">
                     <input 
                       type="text" 
@@ -526,9 +541,10 @@ const InteractiveSection = () => {
                     />
                     <button type="submit" className="absolute right-3 top-3 bottom-3 px-6 bg-primary text-white rounded-full font-bold shadow-lg hover:bg-primary-dark transition-colors">Cek</button>
                   </form>
-                  <button onClick={showAnswer} className="text-sm font-bold text-slate-500 hover:text-primary transition-colors underline underline-offset-4">Menyerah? Lihat Jawaban</button>
+                  <button onClick={showAnswer} className="text-sm font-bold text-slate-500 hover:text-primary transition-colors underline underline-offset-4 mb-4 block mx-auto">Menyerah? Lihat Jawaban</button>
+                  <button onClick={resetRiddle} className="text-xs font-bold text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors">Lewati & Ganti Teka-Teki</button>
                   <AnimatePresence>
-                    {riddleError && <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="text-red-500 font-bold mt-4">Coba lagi! Pikirkan tentang waktu.</motion.p>}
+                    {riddleError && <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="text-red-500 font-bold mt-4">Coba lagi! {currentRiddle.hint}</motion.p>}
                   </AnimatePresence>
                 </>
               ) : (
@@ -537,8 +553,8 @@ const InteractiveSection = () => {
                     <Trophy className="text-green-500 w-12 h-12" />
                   </div>
                   <h3 className="text-3xl font-black text-slate-900 dark:text-white mb-4">Luar Biasa! 🎉</h3>
-                  <p className="text-lg text-slate-600 dark:text-slate-400">Jawabannya adalah <span className="font-bold text-primary">{riddle.displayAnswer}</span>. <br/>Teruslah melihat ke depan!</p>
-                  <button onClick={() => {setRiddleSolved(false); setRiddleAnswer('');}} className="mt-8 px-8 py-3 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white rounded-full font-bold hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Main Lagi</button>
+                  <p className="text-lg text-slate-600 dark:text-slate-400">Jawabannya adalah <span className="font-bold text-primary">{currentRiddle.displayAnswer}</span>.</p>
+                  <button onClick={resetRiddle} className="mt-8 px-8 py-3 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white rounded-full font-bold hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Teka-Teki Selanjutnya</button>
                 </motion.div>
               )}
             </motion.div>
