@@ -162,7 +162,7 @@ const playClickSound = () => {
   try {
     // using a tiny base64 bubble pop sound for a sleek UI experience
     const audio = new Audio('data:audio/wav;base64,UklGRjIAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAAABmYWN0BAAAAAAAAABkYXRhDAAAAAAAAACPj4+Pj4+Pj48=');
-    audio.volume = 0.5;
+    audio.volume = 1.0;
     audio.play().catch(() => {});
   } catch (e) {}
 };
@@ -171,7 +171,7 @@ const playWhooshSound = () => {
   try {
     // swoosh sound for smooth scrolling
     const audio = new Audio('https://cdn.pixabay.com/download/audio/2022/03/15/audio_79ce58a0de.mp3?filename=whoosh-6316.mp3');
-    audio.volume = 0.2;
+    audio.volume = 1.0;
     audio.play().catch(() => {});
   } catch (e) {}
 };
