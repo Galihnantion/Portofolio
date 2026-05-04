@@ -31,7 +31,9 @@ import {
   Gamepad2,
   Trophy,
   Sparkles,
-  Download
+  Download,
+  Music,
+  Pause
 } from 'lucide-react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -242,6 +244,31 @@ const TechStackMarquee = () => {
   );
 };
 
+const MusicPlayer = () => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(null);
+
+  useEffect(() => {
+    if (isPlaying) {
+      audioRef.current?.play().catch(() => setIsPlaying(false));
+    } else {
+      audioRef.current?.pause();
+    }
+  }, [isPlaying]);
+
+  return (
+    <div className="fixed bottom-6 right-6 z-[9000]">
+      <audio ref={audioRef} src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3" loop />
+      <button 
+        onClick={() => { playClickSound(); setIsPlaying(!isPlaying); }}
+        className={`w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-2xl transition-all border-2 backdrop-blur-md ${isPlaying ? 'bg-primary/90 border-primary text-white animate-pulse' : 'bg-white/80 dark:bg-slate-900/80 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:border-primary'}`}
+      >
+        {isPlaying ? <Pause size={24} /> : <Music size={24} />}
+      </button>
+    </div>
+  );
+};
+
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -288,6 +315,7 @@ const Navbar = () => {
             <motion.a
               key={link.name}
               href={link.href}
+              onClick={playClickSound}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
@@ -297,7 +325,7 @@ const Navbar = () => {
             </motion.a>
           ))}
           <motion.button 
-            onClick={toggleTheme}
+            onClick={() => { playClickSound(); toggleTheme(); }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             className="p-2.5 rounded-full bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-300"
@@ -306,6 +334,7 @@ const Navbar = () => {
           </motion.button>
           <motion.a
             href="#contact"
+            onClick={playClickSound}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="px-6 py-3 rounded-full bg-primary text-white text-sm font-bold shadow-lg shadow-primary/20 whitespace-nowrap"
@@ -316,11 +345,11 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <div className="xl:hidden flex items-center gap-4">
-          <button onClick={toggleTheme} className="w-11 h-11 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-300">
+          <button onClick={() => { playClickSound(); toggleTheme(); }} className="w-11 h-11 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-300">
             {isDark ? <Sun size={20} /> : <Moon size={20} />}
           </button>
           <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            onClick={() => { playClickSound(); setIsMobileMenuOpen(!isMobileMenuOpen); }}
             className="w-12 h-12 flex items-center justify-center rounded-xl bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-white"
             aria-label="Toggle menu"
           >
@@ -350,7 +379,7 @@ const Navbar = () => {
           <div className="flex justify-between items-center px-5 py-4 border-b border-slate-100 dark:border-slate-800" style={{ flexShrink: 0 }}>
             <span className="font-heading text-2xl font-bold text-slate-900 dark:text-white">Galih<span className="text-primary">Sptr</span></span>
             <button
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={() => { playClickSound(); setIsMobileMenuOpen(false); }}
               style={{ width: 44, height: 44, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 12 }}
               className="bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-white"
             >
@@ -364,7 +393,7 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => { playClickSound(); setIsMobileMenuOpen(false); }}
                 style={{ display: 'block', padding: '18px 24px', borderRadius: 16, fontSize: 20, fontWeight: 900, touchAction: 'manipulation', WebkitTapHighlightColor: 'transparent' }}
                 className="text-slate-900 dark:text-white active:bg-slate-100 dark:active:bg-slate-900"
               >
@@ -377,7 +406,7 @@ const Navbar = () => {
           <div style={{ padding: '16px 24px 40px', flexShrink: 0 }} className="border-t border-slate-100 dark:border-slate-800">
             <a
               href="#contact"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={() => { playClickSound(); setIsMobileMenuOpen(false); }}
               style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', padding: '14px', borderRadius: 12, fontWeight: 700, fontSize: 16, touchAction: 'manipulation', WebkitTapHighlightColor: 'transparent' }}
               className="bg-primary text-white shadow-lg"
             >
@@ -611,13 +640,13 @@ const InteractiveSection = () => {
           {/* Tabs */}
           <div className="flex p-2 bg-slate-100 dark:bg-slate-950 rounded-full mb-8 md:mb-12 shadow-inner">
             <button 
-              onClick={() => setActiveTab('riddle')}
+              onClick={() => { playClickSound(); setActiveTab('riddle'); }}
               className={`flex-1 py-3 md:py-4 rounded-full font-bold text-sm md:text-base flex items-center justify-center gap-2 transition-all ${activeTab === 'riddle' ? 'bg-primary text-white shadow-lg' : 'text-slate-500 hover:text-slate-900 dark:hover:text-white'}`}
             >
               <Sparkles size={20} /> Teka-Teki
             </button>
             <button 
-              onClick={() => setActiveTab('quiz')}
+              onClick={() => { playClickSound(); setActiveTab('quiz'); }}
               className={`flex-1 py-3 md:py-4 rounded-full font-bold text-sm md:text-base flex items-center justify-center gap-2 transition-all ${activeTab === 'quiz' ? 'bg-accent text-white shadow-lg' : 'text-slate-500 hover:text-slate-900 dark:hover:text-white'}`}
             >
               <Trophy size={20} /> Kuis Seru
@@ -753,6 +782,7 @@ export default function App() {
   return (
     <div className="bg-slate-50 dark:bg-slate-950 overflow-x-hidden">
       <CustomCursor />
+      <MusicPlayer />
       <Navbar />
 
       {/* --- HERO SECTION --- */}
