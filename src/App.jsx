@@ -1043,11 +1043,18 @@ export default function App() {
               {/* GitHub Stats */}
               <div className="mt-8 pt-8 border-t border-slate-200 dark:border-slate-800" data-aos="fade-up">
                 <span className="text-xs font-black uppercase tracking-[0.3em] text-slate-500 mb-6 block">Live GitHub Stats</span>
-                <img 
-                  src="https://github-readme-stats.vercel.app/api?username=Galihnantion&show_icons=true&theme=transparent&hide_border=true&title_color=EC4899&icon_color=F472B6&text_color=94a3b8" 
-                  alt="GitHub Stats" 
-                  className="w-full max-w-md pointer-events-none drop-shadow-xl"
-                />
+                <div className="flex flex-col gap-4">
+                  <img 
+                    src="https://github-readme-stats-one.vercel.app/api?username=Galihnantion&show_icons=true&theme=transparent&hide_border=true&title_color=EC4899&icon_color=F472B6&text_color=94a3b8" 
+                    alt="GitHub Stats" 
+                    className="w-full max-w-md pointer-events-none drop-shadow-xl"
+                  />
+                  <img 
+                    src="https://github-readme-stats-one.vercel.app/api/top-langs/?username=Galihnantion&layout=compact&theme=transparent&hide_border=true&title_color=EC4899&icon_color=F472B6&text_color=94a3b8" 
+                    alt="Top Languages" 
+                    className="w-full max-w-md pointer-events-none drop-shadow-xl"
+                  />
+                </div>
               </div>
             </div>
           </div>
