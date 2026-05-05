@@ -1043,17 +1043,44 @@ export default function App() {
               {/* GitHub Stats */}
               <div className="mt-8 pt-8 border-t border-slate-200 dark:border-slate-800" data-aos="fade-up">
                 <span className="text-xs font-black uppercase tracking-[0.3em] text-slate-500 mb-6 block">Live GitHub Stats</span>
-                <div className="flex flex-col gap-4">
-                  <img 
-                    src="https://github-readme-stats-one.vercel.app/api?username=Galihnantion&show_icons=true&theme=transparent&hide_border=true&title_color=EC4899&icon_color=F472B6&text_color=94a3b8" 
-                    alt="GitHub Stats" 
-                    className="w-full max-w-md pointer-events-none drop-shadow-xl"
-                  />
-                  <img 
-                    src="https://github-readme-stats-one.vercel.app/api/top-langs/?username=Galihnantion&layout=compact&theme=transparent&hide_border=true&title_color=EC4899&icon_color=F472B6&text_color=94a3b8" 
-                    alt="Top Languages" 
-                    className="w-full max-w-md pointer-events-none drop-shadow-xl"
-                  />
+                <div className="space-y-6">
+                  {/* Main Stats Card */}
+                  <div className="relative group">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-primary via-secondary to-accent rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+                    <img 
+                      src="https://github-readme-stats-one.vercel.app/api?username=Galihnantion&show_icons=true&theme=transparent&hide_border=true&title_color=4F46E5&icon_color=0EA5E9&text_color=94a3b8&rank_color=F43F5E" 
+                      alt="GitHub Stats" 
+                      className="relative w-full rounded-2xl pointer-events-none drop-shadow-2xl bg-white/5 dark:bg-slate-900/50 backdrop-blur-sm"
+                    />
+                  </div>
+
+                  {/* Secondary Cards Row */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="glass-dark p-2 rounded-2xl border border-white/5 shadow-inner">
+                      <img 
+                        src="https://github-readme-stats-one.vercel.app/api/top-langs/?username=Galihnantion&layout=compact&theme=transparent&hide_border=true&title_color=4F46E5&icon_color=0EA5E9&text_color=94a3b8" 
+                        alt="Top Languages" 
+                        className="w-full pointer-events-none"
+                      />
+                    </div>
+                    <div className="glass-dark p-2 rounded-2xl border border-white/5 shadow-inner flex flex-col justify-center">
+                      <span className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-2 px-2">Achievements</span>
+                      <img 
+                        src="https://github-profile-trophy.vercel.app/?username=Galihnantion&theme=transparent&no-frame=true&margin-w=4&column=3" 
+                        alt="GitHub Trophies" 
+                        className="w-full pointer-events-none"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Contribution Graph - Adding some life */}
+                  <div className="mt-4 p-4 rounded-3xl bg-slate-100/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800">
+                    <img 
+                      src="https://github-readme-activity-graph.vercel.app/graph?username=Galihnantion&theme=react-dark&bg_color=00000000&hide_border=true&color=4F46E5&line=0EA5E9&point=F43F5E&area=true" 
+                      alt="Activity Graph" 
+                      className="w-full pointer-events-none h-24 object-cover opacity-80"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
