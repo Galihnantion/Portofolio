@@ -1041,46 +1041,41 @@ export default function App() {
               </div>
 
               {/* GitHub Stats */}
-              <div className="mt-8 pt-8 border-t border-slate-200 dark:border-slate-800" data-aos="fade-up">
-                <span className="text-xs font-black uppercase tracking-[0.3em] text-slate-500 mb-6 block">Live GitHub Stats</span>
-                <div className="space-y-6">
-                  {/* Main Stats Card */}
-                  <div className="relative group">
-                    <div className="absolute -inset-1 bg-gradient-to-r from-primary via-secondary to-accent rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+              <div className="mt-12 pt-8 border-t border-slate-200 dark:border-slate-800" data-aos="fade-up">
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="w-2 h-2 rounded-full bg-primary animate-ping" />
+                  <span className="text-xs font-black uppercase tracking-[0.3em] text-slate-500">Statistik GitHub</span>
+                </div>
+                
+                <div className="flex flex-col gap-6">
+                  {/* Main Stats */}
+                  <div className="relative group max-w-lg">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition duration-500" />
                     <img 
                       src="https://github-readme-stats-one.vercel.app/api?username=Galihnantion&show_icons=true&theme=transparent&hide_border=true&title_color=4F46E5&icon_color=0EA5E9&text_color=94a3b8&rank_color=F43F5E" 
                       alt="GitHub Stats" 
-                      className="relative w-full rounded-2xl pointer-events-none drop-shadow-2xl bg-white/5 dark:bg-slate-900/50 backdrop-blur-sm"
+                      className="relative w-full pointer-events-none drop-shadow-md"
                     />
                   </div>
 
-                  {/* Secondary Cards Row */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="glass-dark p-2 rounded-2xl border border-white/5 shadow-inner">
-                      <img 
-                        src="https://github-readme-stats-one.vercel.app/api/top-langs/?username=Galihnantion&layout=compact&theme=transparent&hide_border=true&title_color=4F46E5&icon_color=0EA5E9&text_color=94a3b8" 
-                        alt="Top Languages" 
-                        className="w-full pointer-events-none"
-                      />
-                    </div>
-                    <div className="glass-dark p-2 rounded-2xl border border-white/5 shadow-inner flex flex-col justify-center">
-                      <span className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-2 px-2">Achievements</span>
-                      <img 
-                        src="https://github-profile-trophy.vercel.app/?username=Galihnantion&theme=transparent&no-frame=true&margin-w=4&column=3" 
-                        alt="GitHub Trophies" 
-                        className="w-full pointer-events-none"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Contribution Graph - Adding some life */}
-                  <div className="mt-4 p-4 rounded-3xl bg-slate-100/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800">
+                  {/* Top Languages */}
+                  <div className="relative group max-w-lg">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-secondary/20 to-primary/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition duration-500" />
                     <img 
-                      src="https://github-readme-activity-graph.vercel.app/graph?username=Galihnantion&theme=react-dark&bg_color=00000000&hide_border=true&color=4F46E5&line=0EA5E9&point=F43F5E&area=true" 
-                      alt="Activity Graph" 
-                      className="w-full pointer-events-none h-24 object-cover opacity-80"
+                      src="https://github-readme-stats-one.vercel.app/api/top-langs/?username=Galihnantion&layout=compact&theme=transparent&hide_border=true&title_color=4F46E5&icon_color=0EA5E9&text_color=94a3b8" 
+                      alt="Top Languages" 
+                      className="relative w-full pointer-events-none drop-shadow-md"
                     />
                   </div>
+
+                  <a 
+                    href="https://github.com/Galihnantion" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-xs font-bold text-primary hover:text-secondary transition-colors mt-2"
+                  >
+                    Lihat Profil Lengkap <ArrowRight size={14} />
+                  </a>
                 </div>
               </div>
             </div>
